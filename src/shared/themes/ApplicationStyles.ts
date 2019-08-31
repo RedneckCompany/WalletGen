@@ -30,21 +30,8 @@ const ApplicationStyles = {
       shadowColor: Colors.wood,
     },
   },
-  tabBar: {
-    height: Metrics.tabBarHeight,
-    backgroundColor: Colors.wood,
-  },
   separator: {
     height: Metrics.border.xxsmall,
-    backgroundColor: Colors.divider,
-  },
-  thickSeparator: {
-    marginTop: Metrics.smallMargin,
-    borderTopWidth: Metrics.border.xxsmall,
-    borderColor: Colors.divider,
-  },
-  hugeSeparator: {
-    height: 2,
     backgroundColor: Colors.divider,
   },
 };
