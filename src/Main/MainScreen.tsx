@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function MainScreen() {
   return (
     <View style={styles.container}>
+      <Text style={{ fontWeight: 'bold', marginTop: 20 }}>Home</Text>
       <Text>Open up!</Text>
     </View>
   );

@@ -1,6 +1,5 @@
-import React from 'react';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
-import { MainScreen, MainHeader } from '../../Main';
+import {createStackNavigator, createAppContainer, createDrawerNavigator} from 'react-navigation';
+import { MainScreen, MainHeader, MainDrawer } from '../../Main';
 
 const AppNavigator = createStackNavigator({
   Main: {
@@ -11,11 +10,19 @@ const AppNavigator = createStackNavigator({
     // }),
   },
   // Detail: {screen: DetailScreen},
-},
-{
-  initialRouteName: "Main"
 });
 
-const App = createAppContainer(AppNavigator);
+const DrawerNavigator = createDrawerNavigator(
+  {
+    Main: AppNavigator,
+    // Detail: DetailScreen,
+  },
+  {
+    initialRouteName: "Main",
+    contentComponent: MainDrawer,
+    drawerPosition: 'left',
+  }
+);
 
-export default App;
+
+export default createAppContainer(DrawerNavigator);

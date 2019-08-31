@@ -4,12 +4,12 @@ import { Fonts, Colors } from '../shared/themes'
 import MenuButton from '../shared/components/MenuButton';
 
 
-export default function MainHeader() {
+export default function MainHeader({ navigation }) {
   return ({
     headerStyle: {
       backgroundColor: Colors.wood,
     },
-    headerLeft: <MenuButton />,
+    headerLeft: <MenuButton navigation={navigation}/>,
     headerTitle: <Text numberOfLines={1} style={styles.title}>{'WalletGen'}</Text>,
   });
 }
