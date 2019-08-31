@@ -1,7 +1,18 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Colors } from '../shared/themes';
 
+const styles = StyleSheet.create({
+  container: {
+    // backgroundColor: Colors.main,
+    height: '100%'
+  }
+});
 
-export default function MainHeader() {
-  return <Text>{'WalletGen'}</Text>;
+export default function MainDrawer() {
+  return (
+    <View style={styles.container}>
+      <Text>{'WalletGen'}</Text>
+    </View>
+  );
 }

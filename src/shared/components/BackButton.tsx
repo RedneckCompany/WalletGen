@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 import { Image, TouchableOpacity } from 'react-native';
 import { Images, Metrics } from '../themes';
 
-function MenuButton({ navigation, style }) {
+function BackButton({ navigation, style }) {
   return (
     <TouchableOpacity
       style={style}
       hitSlop={Metrics.touchable.largeHitSlop}
-      onPress={navigation.openDrawer}
+      onPress={() => navigation.goBack(null)}
     >
-      <Image source={Images.menuIcon} />
+      <Image source={Images.backIcon} />
     </TouchableOpacity>
   );
 }
 
-MenuButton.propTypes = {
+BackButton.propTypes = {
   style: PropTypes.any,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default MenuButton;
+export default BackButton;

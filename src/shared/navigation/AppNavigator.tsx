@@ -1,5 +1,6 @@
 import {createStackNavigator, createAppContainer, createDrawerNavigator} from 'react-navigation';
 import { MainScreen, MainHeader, MainDrawer } from '../../Main';
+import { DetailScreen, DetailHeader } from '../../Detail'
 
 const AppNavigator = createStackNavigator({
   Main: {
@@ -9,13 +10,15 @@ const AppNavigator = createStackNavigator({
     //   header: <MainHeader navigation={navigation} />,
     // }),
   },
-  // Detail: {screen: DetailScreen},
+  Detail: {
+    screen: DetailScreen,
+    navigationOptions: DetailHeader
+  },
 });
 
 const DrawerNavigator = createDrawerNavigator(
   {
     Main: AppNavigator,
-    // Detail: DetailScreen,
   },
   {
     initialRouteName: "Main",

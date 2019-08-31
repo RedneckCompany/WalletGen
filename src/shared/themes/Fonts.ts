@@ -6,13 +6,23 @@ const type = {
   regular: 'Roboto-Regular',
 };
 
-function top(fontFamily: string = 'regular') {
+function header(fontFamily: string = 'regular') {
   return {
     color: Colors.primary,
     // fontFamily: type[fontFamily],
     fontSize: 22,
   };
 }
+
+function sectionTitle(fontFamily: string = 'regular') {
+  return {
+    color: Colors.mainBackground,
+    // fontFamily: type[fontFamily],
+    fontSize: 20,
+  };
+}
+
 export default {
-  top,
+  header,
+  sectionTitle,
 };

@@ -21,13 +21,13 @@ const ApplicationStyles = {
       elevation: Metrics.elevation.large,
       shadowOpacity: 0.3,
       shadowOffset: { width: 0, height: 1 },
-      shadowColor: Colors.wood,
+      shadowColor: Colors.mainBackground,
     },
     top: {
       elevation: Metrics.elevation.top,
       shadowOpacity: 0.3,
       shadowOffset: { width: 0, height: -1 },
-      shadowColor: Colors.wood,
+      shadowColor: Colors.mainBackground,
     },
   },
   separator: {

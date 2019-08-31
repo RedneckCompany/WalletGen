@@ -4,7 +4,6 @@ const { width } = Dimensions.get('window');
 
 // Used via Metrics.baseMargin
 const metrics = {
-  passwordLength: 8,
   hairlineMargin: 2,
   tightMargin: 4,
   tinyMargin: 5,
