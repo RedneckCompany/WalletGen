@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { Metrics, Colors, Fonts } from '../shared/themes';
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,22 +19,38 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function MainScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.sectionTitle} numberOfLines={1}>
-        Your wallets
-      </Text>
-
-      <TouchableOpacity onPress={() => navigation.navigate('Detail', {name: 'First'})}>
-        <Text>Navigate</Text>
-      </TouchableOpacity>
-    </View>
-  );
+interface MainScreenProps {
+  readonly navigation;
+  readonly wallets;
 }
 
-MainScreen.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
+class MainScreen extends React.Component<MainScreenProps> {
+  render() {
+    const { navigation: { navigate }, wallets } = this.props;
+
+    return (
+      <View style={styles.container}>
+        <Text style={styles.sectionTitle} numberOfLines={1}>
+          Your wallets
+        </Text>
+  
+        <TouchableOpacity onPress={() => navigate('Detail', {name: 'First'})}>
+          <Text>Navigateasdasd</Text>
+        </TouchableOpacity>
+
+        {wallets.list && wallets.list.map((wallet) => (
+          <TouchableOpacity onPress={() => navigate('Detail', {name: 'First'})}>
+            <Text>Navigate: {wallet}</Text>
+          </TouchableOpacity>) 
+        )}
+      </View>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  const { wallets } = state;
+  return { wallets };
 };
+
+export default connect(mapStateToProps)(MainScreen);

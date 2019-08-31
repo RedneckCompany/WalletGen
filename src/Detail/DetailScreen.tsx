@@ -13,16 +13,19 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function DetailScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text>Detail</Text>
-    </View>
-  );
+interface DetailScreenProps {
+  readonly navigation;
 }
 
-DetailScreen.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-};
+class DetailScreen extends React.Component<DetailScreenProps> {
+  render() {
+    const { navigation } = this.props;
+    return (
+      <View style={styles.container}>
+        <Text>Detail</Text>
+      </View>
+    );
+  }
+}
+
+export default DetailScreen;
