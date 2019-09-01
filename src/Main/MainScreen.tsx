@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { Metrics, Colors, Fonts } from '../shared/themes';
 import { connect } from 'react-redux';
+import WideFabButton from '../shared/components/WideFabButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -43,6 +44,8 @@ class MainScreen extends React.Component<MainScreenProps> {
             <Text>Navigate: {wallet}</Text>
           </TouchableOpacity>) 
         )}
+
+        <WideFabButton text={'Create Wallet'} onPress={() => navigate('Create')}></WideFabButton>
       </View>
     );
   }

@@ -12,19 +12,19 @@ const styles = StyleSheet.create({
   }
 });
 
-interface DetailScreenProps {
+interface CreateScreenProps {
   readonly navigation;
 }
 
-class DetailScreen extends React.Component<DetailScreenProps> {
+class CreateScreen extends React.Component<CreateScreenProps> {
   render() {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text>Detail</Text>
+        <Text>Create</Text>
       </View>
     );
   }
 }
 
-export default DetailScreen;
+export default CreateScreen;
