@@ -11,6 +11,8 @@ interface WideFabButtonProps {
 
 interface WideFabButtonStyles {
   readonly container: ViewStyle;
+  readonly active: ViewStyle;
+  readonly disabled: ViewStyle;
   readonly text: TextStyle;
 }
 
@@ -25,7 +27,6 @@ const styles = StyleSheet.create<WideFabButtonStyles>({
     left: Metrics.xxlargeMargin,
     right: Metrics.xxlargeMargin,
     bottom: initialHeightByPlatform,
-    backgroundColor: Colors.headerBackground,
     paddingVertical: Metrics.littleMargin,
     elevation: Metrics.elevation.medium,
     zIndex: Metrics.elevation.medium,
@@ -34,6 +35,12 @@ const styles = StyleSheet.create<WideFabButtonStyles>({
     shadowRadius: 2,
     shadowOffset: { width: 0, height: 2 },
     borderRadius: Metrics.largeMargin,
+  },
+  active: {
+    backgroundColor: Colors.mainBackground,
+  },
+  disabled: {
+    backgroundColor: Colors.disabled
   },
   text: {
     color: Colors.primary,
@@ -46,7 +53,7 @@ export default function WideFabButton({ text, disabled = false, onPress }: WideF
       <TouchableOpacity
         disabled={disabled}
         onPress={onPress}
-        style={styles.container}
+        style={[styles.container, disabled ? styles.disabled : styles.active]}
       >
         <Text style={styles.text}>{text}</Text>
       </TouchableOpacity>

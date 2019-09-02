@@ -6,7 +6,8 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "clean-all": "watchman watch-del-all && rm -rf node_modules/ && npm cache clean --force && npm install"
   },
   "dependencies": {
     "expo": "^34.0.1",

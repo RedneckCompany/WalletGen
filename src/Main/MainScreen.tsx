@@ -45,7 +45,7 @@ class MainScreen extends React.Component<MainScreenProps> {
           </TouchableOpacity>) 
         )}
 
-        <WideFabButton text={'Create Wallet'} onPress={() => navigate('Create')}></WideFabButton>
+        <WideFabButton text={'Create Wallet'} onPress={() => navigate('Create')} />
       </View>
     );
   }
