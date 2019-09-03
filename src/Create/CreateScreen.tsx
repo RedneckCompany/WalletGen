@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { Fonts, Metrics, Images, Colors } from '../shared/themes';
 import WideFabButton from '../shared/components/WideFabButton';
+import Bitcoin from './generate/bitcoin';
 
 const styles = StyleSheet.create({
   container: {
@@ -67,6 +68,10 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
     const { type, name } = this.state;
     const id = `${type}-${name}`;
     this.setState({ id });
+
+    const address = new Bitcoin().generateNewAddress();
+    console.log('adr', address);
+
     navigation.goBack(null);
   }
 
