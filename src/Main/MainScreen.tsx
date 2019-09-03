@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-import PropTypes from 'prop-types';
 import { Metrics, Colors, Fonts } from '../shared/themes';
 import { connect } from 'react-redux';
 import WideFabButton from '../shared/components/WideFabButton';

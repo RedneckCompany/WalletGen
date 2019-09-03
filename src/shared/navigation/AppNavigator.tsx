@@ -1,4 +1,6 @@
-import {createStackNavigator, createAppContainer, createDrawerNavigator} from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { MainScreen, MainHeader, MainDrawer } from '../../Main';
 import { DetailScreen, DetailHeader } from '../../Detail';
 import { CreateScreen, CreateHeader } from '../../Create';
