@@ -19,9 +19,12 @@ interface DetailScreenProps {
 class DetailScreen extends React.Component<DetailScreenProps> {
   render() {
     const { navigation } = this.props;
+    const name = navigation.getParam('name');
+
     return (
       <View style={styles.container}>
         <Text>Detail</Text>
+        <Text>name: { name }</Text>
       </View>
     );
   }

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
+    "@types/react": "^16.9.2",
     "assert": "^1.5.0",
     "bitcoinjs-lib": "^5.1.1",
     "buffer": "^5.4.2",
@@ -30,6 +31,7 @@
     "readable-stream": "^1.0.33",
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
     "stream-browserify": "^1.0.0",
     "vm-browserify": "0.0.4"
   },

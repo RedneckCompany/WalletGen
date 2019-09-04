@@ -33,14 +33,10 @@ class MainScreen extends React.Component<MainScreenProps> {
         <Text style={styles.sectionTitle} numberOfLines={1}>
           Your wallets
         </Text>
-  
-        <TouchableOpacity onPress={() => navigate('Detail', {name: 'First'})}>
-          <Text>Navigateasdasd</Text>
-        </TouchableOpacity>
 
         {wallets.list && wallets.list.map((wallet) => (
-          <TouchableOpacity onPress={() => navigate('Detail', {name: 'First'})}>
-            <Text>Navigate: {wallet}</Text>
+          <TouchableOpacity onPress={() => navigate('Detail', { name: wallet.name })}>
+            <Text>Navigate: {wallet.name}</Text>
           </TouchableOpacity>) 
         )}
 

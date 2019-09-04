@@ -1,8 +1,12 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import { Fonts, Metrics, Images, Colors } from '../shared/themes';
 import WideFabButton from '../shared/components/WideFabButton';
-import Bitcoin from './generate/bitcoin';
+import Bitcoin from '../tools/bitcoin';
+import { addWallet } from '../shared/actions/walletActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,6 +38,7 @@ const styles = StyleSheet.create({
 
 interface CreateScreenProps {
   readonly navigation;
+  readonly actions;
 }
 
 interface CreateScreenState {
@@ -41,13 +46,13 @@ interface CreateScreenState {
   type?: string,
   name?: string,
   address?: {
-    public: string,
-    private: string,
+    publicKey: string,
+    privateKey: string,
   }
 }
 
 class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState> {
-  constructor(props) {
+  constructor(props: CreateScreenProps) {
     super(props);
     this.state = {
         type: '',
@@ -63,16 +68,20 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
     this.setState({ name });
   }
 
-  submit() {
-    const { navigation } = this.props;
+  save = async () => {
+    const { actions: { addWallet }, navigation } = this.props;
     const { type, name } = this.state;
     const id = `${type}-${name}`;
-    this.setState({ id });
-
     const address = new Bitcoin().generateNewAddress();
-    console.log('adr', address);
 
-    navigation.goBack(null);
+    this.setState({ id, address });
+
+    try {
+      await addWallet({ id, type, name, address });
+      navigation.goBack(null);
+    } catch (e) { 
+      console.log('err', e);
+    }
   }
 
   render() {
@@ -113,7 +122,7 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
 
         <WideFabButton
           text={'Submit'}
-          onPress={() => this.submit()}
+          onPress={this.save}
           disabled={(!type || !name)}
         />
       </View>
@@ -121,4 +130,10 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
   }
 }
 
-export default CreateScreen;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ addWallet }, dispatch),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(CreateScreen);
