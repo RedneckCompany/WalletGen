@@ -37,7 +37,7 @@ const styles = StyleSheet.create<WideFabButtonStyles>({
     borderRadius: Metrics.largeMargin,
   },
   active: {
-    backgroundColor: Colors.mainBackground,
+    backgroundColor: Colors.main,
   },
   disabled: {
     backgroundColor: Colors.disabled

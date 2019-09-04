@@ -7,7 +7,7 @@ import MenuButton from '../shared/components/MenuButton';
 export default function MainHeader({ navigation }) {
   return ({
     headerStyle: {
-      backgroundColor: Colors.headerBackground,
+      backgroundColor: Colors.main,
     },
     headerLeft: <MenuButton style={styles.icon} navigation={navigation}/>,
     headerTitle: <Text numberOfLines={1} style={styles.title}>{'WalletGen'}</Text>,
