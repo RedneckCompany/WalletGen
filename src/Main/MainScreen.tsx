@@ -3,13 +3,14 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { Metrics, Colors, Fonts } from '../shared/themes';
 import { connect } from 'react-redux';
 import WideFabButton from '../shared/components/WideFabButton';
+import WalletList from './components/WalletList';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     padding: Metrics.smallMargin,
-    // backgroundColor: Colors.mainBackground,
+    // backgroundColor: Colors.main,
     height: '100%',
     width: '100%',
   },
@@ -26,7 +27,7 @@ interface MainScreenProps {
 
 class MainScreen extends React.Component<MainScreenProps> {
   render() {
-    const { navigation: { navigate }, wallets } = this.props;
+    const { navigation, wallets: { list } } = this.props;
 
     return (
       <View style={styles.container}>
@@ -34,13 +35,11 @@ class MainScreen extends React.Component<MainScreenProps> {
           Your wallets
         </Text>
 
-        {wallets.list && wallets.list.map((wallet) => (
-          <TouchableOpacity onPress={() => navigate('Detail', { name: wallet.name })}>
-            <Text>Navigate: {wallet.name}</Text>
-          </TouchableOpacity>) 
-        )}
+        {list && !!list.length && 
+          <WalletList data={list} navigation={navigation} />
+        }
 
-        <WideFabButton text={'Create Wallet'} onPress={() => navigate('Create')} />
+        <WideFabButton text={'Create Wallet'} onPress={() => navigation.navigate('Create')} />
       </View>
     );
   }

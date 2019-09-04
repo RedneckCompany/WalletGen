@@ -18,7 +18,7 @@ function MenuButton({ navigation, style }) {
 MenuButton.propTypes = {
   style: PropTypes.any,
   navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
+    openDrawer: PropTypes.func.isRequired,
   }).isRequired,
 };
 

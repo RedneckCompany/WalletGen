@@ -16,13 +16,23 @@ function header(fontFamily: string = 'regular') {
 
 function sectionTitle(fontFamily: string = 'regular') {
   return {
-    color: Colors.mainBackground,
+    color: Colors.main,
     // fontFamily: type[fontFamily],
     fontSize: 20,
+  };
+}
+
+function text(fontFamily: string = 'regular') {
+  return {
+    color: '#fff',
+    fontWeight: '600',
+    // fontFamily: type[fontFamily],
+    fontSize: 16,
   };
 }
 
 export default {
   header,
   sectionTitle,
+  text,
 };
