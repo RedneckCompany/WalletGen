@@ -62,6 +62,7 @@ function WalletList({ data, navigation }) {
             id: item.id,
             name: item.name,
             publicKey: item.address.publicKey,
+            privateKey: item.address.privateKey,
           })}
         >
           <CoinIcon type={item.type} />
