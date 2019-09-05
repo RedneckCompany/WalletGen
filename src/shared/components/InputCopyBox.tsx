@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    // flexWrap: 'wrap',
     width: '100%',
 
     padding: Metrics.tightMargin,
@@ -20,9 +19,7 @@ const styles = StyleSheet.create({
   },
   input: {
     color: Colors.disabledText,
-  },
-  icon: {
-    margin: Metrics.tightMargin,
+    flex: 1,
   },
 });
 
@@ -32,16 +29,14 @@ interface Props {
 }
 
 class InputCopyBox extends React.Component<Props> {
-  componentDidMount () {
-    this.writeToClipboard();
-  }
-
   writeToClipboard = async () => {
     const { text } = this.props;
     await Clipboard.setString(text);
   };
 
   readFromClipboard = async () => {
+    await this.writeToClipboard();
+
     const content = await Clipboard.getString();   
     setTimeout(() => {
       Alert.alert(`copied: ${content}`);

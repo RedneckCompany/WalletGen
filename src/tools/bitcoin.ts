@@ -16,11 +16,16 @@ export default class BitcoinGenerate {
     };
   }
 
+  public getQRCode(address) {
+    const uri = `https://blockchain.info/qr?data=${address}`;
+
+    return uri;
+  }
+
   public decode(secret) {
     const keyPair = bitcoin.ECPair.fromWIF(secret);
     const { address } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey });
 
     return address;
   }
-
 }

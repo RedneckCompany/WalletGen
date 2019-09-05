@@ -63,7 +63,7 @@ const metrics = {
     larger: 75,
     xl: 100,
     xxl: 150,
-    logo: 300,
+    full: 300,
     tinyPreview: width / 4,
     smallPreview: width / 2,
   },

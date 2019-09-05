@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Fonts, Metrics } from '../shared/themes';
 import InputCopyBox from '../shared/components/InputCopyBox';
+import PublicQRCode from '../tools/PublicQRCode';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,6 +11,11 @@ const styles = StyleSheet.create({
     padding: Metrics.bigMargin,
     height: '100%',
     width: '100%',
+  },
+  section: {
+    flexDirection: 'column',
+    width: '100%',
+    alignItems: 'center',
   },
   sectionTitle: {
     ...Fonts.sectionTitle(),
@@ -24,19 +30,29 @@ interface DetailScreenProps {
 class DetailScreen extends React.Component<DetailScreenProps> {
   render() {
     const { navigation } = this.props;
-    const { name, publicKey } = navigation.state.params;
+    const { publicKey, privateKey } = navigation.state.params;
 
     return (
       <View style={styles.container}>
         <Text style={styles.sectionTitle} numberOfLines={1}>
           Receive payment
         </Text>
-        <View>
+
+        <View style={styles.section}>
           {publicKey && <InputCopyBox text={publicKey} />}
-          <Text>public: { name }</Text>
-          <Text>asd: { publicKey }</Text>
+          <PublicQRCode address={publicKey} />
+        </View>
+
+        <Text style={styles.sectionTitle} numberOfLines={1}>
+          Send payment
+        </Text>
+
+        <View style={styles.section}>
+          {privateKey && <InputCopyBox text={privateKey} />}
         </View>
       </View>
+
+      
     );
   }
 }
