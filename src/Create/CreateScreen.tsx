@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   input: {
     margin: Metrics.smallMargin,
     padding: Metrics.smallMargin,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.primary,
     height:45,
     elevation: Metrics.elevation.medium,
     shadowColor: Colors.darkPrimary,
@@ -71,8 +71,8 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
   save = async () => {
     const { actions: { addWallet }, navigation } = this.props;
     const { type, name } = this.state;
-    const id = `${type}-${name}`;
     const address = new Bitcoin().generateNewAddress();
+    const id = `${type}-${address.publicKey}`;
 
     this.setState({ id, address });
 
@@ -110,7 +110,6 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
 
             <TextInput
               style={styles.input}
-              defaultValue={''}
               onChangeText={(text) => this.updateName(text)}
               placeholder={'Enter name for your wallet'}
               // placeholderTextColor={Colors.main}

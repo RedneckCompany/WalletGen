@@ -5,12 +5,13 @@ import BackButton from '../shared/components/BackButton';
 
 
 export default function DetailHeader({ navigation }) {
+  const name = navigation.getParam('name') || '';
   return ({
     headerStyle: {
       backgroundColor: Colors.main,
     },
     headerLeft: <BackButton style={styles.icon} navigation={navigation}/>,
-    headerTitle: <Text numberOfLines={1} style={styles.title}>Detail</Text>,
+    headerTitle: <Text numberOfLines={1} style={styles.title}>{name}</Text>,
   });
 }
 
