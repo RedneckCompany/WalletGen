@@ -6,7 +6,6 @@ const { width } = Dimensions.get('window');
 const metrics = {
   hairlineMargin: 2,
   tightMargin: 4,
-  tinyMargin: 5,
   smallerMargin: 8,
   smallMargin: 10,
   littleMargin: 12,
@@ -17,7 +16,6 @@ const metrics = {
   xlargeMargin: 30,
   xxlargeMargin: 40,
   xxxlargeMargin: 50,
-  navBarHeight: 64,
   drawerTop: Platform.select({
     android: 50,
     ios: 20,
@@ -59,7 +57,7 @@ const metrics = {
     top: 20,
   },
   images: {
-    small: 20,
+    icon: 24,
     medium: 40,
     large: 60,
     larger: 75,

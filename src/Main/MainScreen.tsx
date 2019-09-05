@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
   sectionTitle: {
     ...Fonts.sectionTitle(),
     margin: Metrics.bigMargin,
+  },
+  sectionText: {
+    // ...Fonts.text(),
   }
 });
 
@@ -39,7 +42,11 @@ class MainScreen extends React.Component<MainScreenProps> {
           <WalletList data={list} navigation={navigation} />
         }
 
-        <WideFabButton text={'Create Wallet'} onPress={() => navigation.navigate('Create')} />
+        {!list || !list.length && 
+          <Text style={styles.sectionText}>You have no wallets. First press add wallet to start.</Text>
+        }
+
+        <WideFabButton text={'Add Wallet'} onPress={() => navigation.navigate('Create')} />
       </View>
     );
   }

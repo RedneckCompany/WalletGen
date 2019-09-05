@@ -58,7 +58,11 @@ function WalletList({ data, navigation }) {
       renderItem={({ item }) => (
         <TouchableOpacity
           style={styles.itemContainer}
-          onPress={() => navigate('Detail', { name: item.name })}
+          onPress={() => navigate('Detail', { 
+            id: item.id,
+            name: item.name,
+            publicKey: item.address.publicKey,
+          })}
         >
           <CoinIcon type={item.type} />
 
