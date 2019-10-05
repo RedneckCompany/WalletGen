@@ -45,6 +45,7 @@ interface CreateScreenState {
   id?: string,
   type?: string,
   name?: string,
+  secret?: string,
   address?: {
     publicKey: string,
     privateKey: string,
@@ -56,7 +57,8 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
     super(props);
     this.state = {
         type: '',
-        name: ''
+        name: '',
+        secret: '',
     }
   }
 
@@ -68,10 +70,15 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
     this.setState({ name });
   }
 
+  updateSecret(secret: string) {
+    this.setState({ secret });
+  }
+
   save = async () => {
     const { actions: { addWallet }, navigation } = this.props;
-    const { type, name } = this.state;
-    const address = new Bitcoin().generateNewAddress();
+    const { type, name, secret } = this.state;
+
+    const address = !!secret.length ? new Bitcoin().importWallet(secret) : new Bitcoin().generateNewAddress();
     const id = `${type}-${address.publicKey}`;
 
     this.setState({ id, address });
@@ -112,6 +119,23 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
               style={styles.input}
               onChangeText={(text) => this.updateName(text)}
               placeholder={'Enter name for your wallet'}
+              // placeholderTextColor={Colors.main}
+              // selectionColor={Colors.main}
+              // underlineColorAndroid="transparent"
+            />
+          </View>
+        }
+
+        {!!type && !!name &&
+          <View>
+            <Text style={styles.sectionTitle} numberOfLines={1}>
+              3 - Import existant wallet ?
+            </Text>
+
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.updateSecret(text)}
+              placeholder={'(Facultative) Enter your private key'}
               // placeholderTextColor={Colors.main}
               // selectionColor={Colors.main}
               // underlineColorAndroid="transparent"

@@ -10,7 +10,7 @@ export default function CreateHeader({ navigation }) {
       backgroundColor: Colors.main,
     },
     headerLeft: <BackButton style={styles.icon} navigation={navigation}/>,
-    headerTitle: <Text numberOfLines={1} style={styles.title}>Wallet creation</Text>,
+    headerTitle: <Text numberOfLines={1} style={styles.title}>Add Wallet</Text>,
   });
 }
 
