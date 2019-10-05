@@ -69,7 +69,7 @@ const metrics = {
   },
   radius: {
     small: 3,
-    buttonCorners: 4,
+    medium: 4,
     circle: Platform.select({ ios: 9999, android: 50 }),
   },
   border: {
