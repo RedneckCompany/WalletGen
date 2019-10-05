@@ -7,7 +7,9 @@
     "test": "jest",
     "lint": "eslint .",
     "clean-all": "watchman watch-del-all && rm -rf node_modules/ && npm cache clean --force && npm install",
-    "postinstall": "rn-nodeify --install buffer,stream,assert,events,crypto,vm --hack"
+    "postinstall": "rn-nodeify --install buffer,stream,assert,events,crypto,vm --hack",
+    "ios": "react-native run-ios",
+    "android": "react-native run-android"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
