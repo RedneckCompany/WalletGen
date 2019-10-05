@@ -1,12 +1,13 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { Fonts, Metrics, Images, Colors } from '../shared/themes';
+import { Fonts, Metrics, Colors } from '../shared/themes';
 import WideFabButton from '../shared/components/WideFabButton';
 import Bitcoin from '../tools/bitcoin';
 import { addWallet } from '../shared/actions/walletActions';
+import TypeButton from './components/TypeButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,8 +21,10 @@ const styles = StyleSheet.create({
     ...Fonts.sectionTitle(),
     margin: Metrics.bigMargin,
   },
-  crpytoButton: {
-    borderColor: Colors.main
+  typeButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   input: {
     margin: Metrics.smallMargin,
@@ -100,13 +103,10 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
             1 - Type
           </Text>
 
-          <TouchableOpacity
-            style={styles.crpytoButton}
-            hitSlop={Metrics.touchable.largeHitSlop}
-            onPress={() => this.updateType('bitcoin')}
-          >
-            <Image source={Images.bitcoinIcon} />
-          </TouchableOpacity> 
+          <View style={styles.typeButtonsContainer}>
+            <TypeButton type={'bitcoin'} onPress={() => this.updateType('bitcoin')} />
+            {/* <TypeButton type={'ethereum'} onPress={() => this.updateType('ethereum')} /> */}
+          </View>
         </View>
 
         {!!type &&
