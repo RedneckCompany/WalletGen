@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-import { Metrics, Colors, Fonts } from '../shared/themes';
+import { StyleSheet, Text, View } from 'react-native';
+import { Metrics, Fonts } from '../shared/themes';
 import { connect } from 'react-redux';
 import WideFabButton from '../shared/components/WideFabButton';
 import WalletList from './components/WalletList';
+import { bindActionCreators } from 'redux';
+import { fetchBalanceWalletList } from '../shared/actions/walletActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,19 +21,25 @@ const styles = StyleSheet.create({
     margin: Metrics.bigMargin,
   },
   sectionText: {
-    // ...Fonts.text(),
+    textAlign: 'center',
   }
 });
 
 interface MainScreenProps {
+  readonly actions;
   readonly navigation;
   readonly wallets;
 }
 
 class MainScreen extends React.Component<MainScreenProps> {
+  componentDidMount() {
+    const { actions: { fetchBalanceWalletList }, wallets: { list } } = this.props;
+    fetchBalanceWalletList(list);
+  }
+
   render() {
     const { navigation, wallets: { list } } = this.props;
-
+  
     return (
       <View style={styles.container}>
         <Text style={styles.sectionTitle} numberOfLines={1}>
@@ -43,7 +51,10 @@ class MainScreen extends React.Component<MainScreenProps> {
         }
 
         {!list || !list.length && 
-          <Text style={styles.sectionText}>You have no wallets. First press add wallet to start.</Text>
+          <Text style={styles.sectionText}>
+            You have no wallets. 
+            First press add wallet to start.
+          </Text>
         }
 
         <WideFabButton text={'Add Wallet'} onPress={() => navigation.navigate('Create')} />
@@ -57,4 +68,10 @@ const mapStateToProps = (state) => {
   return { wallets };
 };
 
-export default connect(mapStateToProps)(MainScreen);
+const mapDispatchToProps = (dispatch)  => {
+  return {
+    actions: bindActionCreators({ fetchBalanceWalletList }, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
