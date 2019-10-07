@@ -24,7 +24,7 @@ function sectionTitle(fontFamily: string = 'regular') {
 
 function text(fontFamily: string = 'regular') {
   return {
-    color: '#fff',
+    color: Colors.primary,
     fontWeight: '600',
     // fontFamily: type[fontFamily],
     fontSize: 16,
