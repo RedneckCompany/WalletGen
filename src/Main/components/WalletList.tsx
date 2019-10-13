@@ -76,7 +76,7 @@ function WalletList({ data, navigation }) {
             </View>
           </View>
 
-          {item.balance && item.unit &&
+          {!!item.balance && !!item.unit &&
             <Text style={styles.name}>{`${item.balance} ${item.unit}`}</Text>
           }
         </TouchableOpacity>
