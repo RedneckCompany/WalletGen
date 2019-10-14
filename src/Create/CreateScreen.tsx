@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, TextInput } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -97,58 +97,59 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
   render() {
     const { type, name } = this.state;
     return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.sectionTitle} numberOfLines={1}>
-            1 - Type
-          </Text>
-
-          <View style={styles.typeButtonsContainer}>
-            <TypeButton type={'bitcoin'} onPress={() => this.updateType('bitcoin')} />
-            {/* <TypeButton type={'ethereum'} onPress={() => this.updateType('ethereum')} /> */}
-          </View>
-        </View>
-
-        {!!type &&
+      <>
+        <ScrollView style={styles.container}>
           <View>
             <Text style={styles.sectionTitle} numberOfLines={1}>
-              2 - Choose a name
+              1 - Type
             </Text>
 
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => this.updateName(text)}
-              placeholder={'Enter name for your wallet'}
-              // placeholderTextColor={Colors.main}
-              // selectionColor={Colors.main}
-              // underlineColorAndroid="transparent"
-            />
+            <View style={styles.typeButtonsContainer}>
+              <TypeButton type={'bitcoin'} onPress={() => this.updateType('bitcoin')} />
+              {/* <TypeButton type={'ethereum'} onPress={() => this.updateType('ethereum')} /> */}
+            </View>
           </View>
-        }
 
-        {!!type && !!name &&
-          <View>
-            <Text style={styles.sectionTitle} numberOfLines={1}>
-              3 - Import existant wallet ?
-            </Text>
+          {!!type &&
+            <View>
+              <Text style={styles.sectionTitle} numberOfLines={1}>
+                2 - Choose a name
+              </Text>
 
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => this.updateSecret(text)}
-              placeholder={'(Facultative) Enter your private key'}
-              // placeholderTextColor={Colors.main}
-              // selectionColor={Colors.main}
-              // underlineColorAndroid="transparent"
-            />
-          </View>
-        }
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => this.updateName(text)}
+                placeholder={'Enter name for your wallet'}
+                // placeholderTextColor={Colors.main}
+                // selectionColor={Colors.main}
+                // underlineColorAndroid="transparent"
+              />
+            </View>
+          }
 
+          {!!type && !!name &&
+            <View>
+              <Text style={styles.sectionTitle} numberOfLines={1}>
+                3 - Import existant wallet ?
+              </Text>
+
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => this.updateSecret(text)}
+                placeholder={'(Facultative) Enter your private key'}
+                // placeholderTextColor={Colors.main}
+                // selectionColor={Colors.main}
+                // underlineColorAndroid="transparent"
+              />
+            </View>
+          }
+        </ScrollView>
         <WideFabButton
           text={'Submit'}
           onPress={this.save}
           disabled={(!type || !name)}
         />
-      </View>
+      </>
     );
   }
 }
