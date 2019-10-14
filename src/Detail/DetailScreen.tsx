@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Fonts, Metrics } from '../shared/themes';
 import InputCopyBox from '../shared/components/InputCopyBox';
 import PublicQRCode from '../tools/PublicQRCode';
@@ -34,7 +34,7 @@ function DetailScreen({ navigation }: DetailScreenProps) {
   const { publicKey, privateKey } = navigation.state.params;
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.sectionTitle} numberOfLines={1}>
         Receive payment
       </Text>
@@ -55,7 +55,7 @@ function DetailScreen({ navigation }: DetailScreenProps) {
           <InputCopyBox style={styles.copyBox} text={privateKey} />
         }
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

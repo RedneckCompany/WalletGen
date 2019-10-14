@@ -16,14 +16,12 @@ const styles = StyleSheet.create({
 export default function DetailHeader({ navigation }) {
   const name = navigation.getParam('name') || '';
 
-  const openMoreMenu = navigation.openDrawer;
-
   return ({
     headerStyle: {
       backgroundColor: Colors.main,
     },
     headerLeft: <BackButton style={styles.icon} navigation={navigation} />,
     headerTitle: <Text numberOfLines={1} style={styles.title}>{name}</Text>,
-    headerRight: <MoreButton style={styles.icon} onPress={openMoreMenu} />,
+    headerRight: <MoreButton style={styles.icon} onPress={navigation.toggleDrawer} />,
   });
 }
