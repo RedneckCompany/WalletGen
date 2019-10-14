@@ -31,8 +31,18 @@ function text(fontFamily: string = 'regular') {
   };
 }
 
+function textDark(fontFamily: string = 'regular') {
+  return {
+    color: Colors.darkPrimary,
+    fontWeight: '600',
+    // fontFamily: type[fontFamily],
+    fontSize: 16,
+  };
+}
+
 export default {
   header,
   sectionTitle,
   text,
+  textDark,
 };

@@ -75,7 +75,7 @@ const metrics = {
   border: {
     tiny: 0.5,
     xxsmall: 1,
-    xsmall: 3,
+    xsmall: 2,
     small: 4,
     large: 8,
   },
@@ -93,6 +93,9 @@ const metrics = {
     smallHitSlop: { top: 5, bottom: 5, left: 5, right: 5 },
     hitSlop: { top: 10, bottom: 10, left: 10, right: 10 },
     largeHitSlop: { top: 25, bottom: 25, left: 25, right: 25 },
+  },
+  dialog: {
+    width: 300,
   },
 };
 

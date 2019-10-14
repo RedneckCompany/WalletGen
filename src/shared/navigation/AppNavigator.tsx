@@ -4,6 +4,18 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { MainScreen, MainHeader, MainDrawer } from '../../Main';
 import { DetailScreen, DetailHeader } from '../../Detail';
 import { CreateScreen, CreateHeader } from '../../Create';
+import DetailRightDrawer from '../../Detail/DetailRightDrawer';
+
+const DetailNavigator = createDrawerNavigator(
+  {
+    Detail: DetailScreen,
+  },
+  {
+    initialRouteName: "Detail",
+    contentComponent: DetailRightDrawer,
+    drawerPosition: 'right',
+  }
+);
 
 const AppNavigator = createStackNavigator({
   Main: {
@@ -11,8 +23,8 @@ const AppNavigator = createStackNavigator({
     navigationOptions: MainHeader
   },
   Detail: {
-    screen: DetailScreen,
-    navigationOptions: DetailHeader
+    screen: DetailNavigator,
+    navigationOptions: DetailHeader,
   },
   Create: {
     screen: CreateScreen,
@@ -20,7 +32,7 @@ const AppNavigator = createStackNavigator({
   },
 });
 
-const DrawerNavigator = createDrawerNavigator(
+const RootNavigator = createDrawerNavigator(
   {
     Main: AppNavigator,
   },
@@ -32,4 +44,4 @@ const DrawerNavigator = createDrawerNavigator(
 );
 
 
-export default createAppContainer(DrawerNavigator);
+export default createAppContainer(RootNavigator);
