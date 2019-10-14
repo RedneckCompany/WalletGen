@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Clipboard, TouchableOpacity, Image, TextInput, StyleSheet, View } from 'react-native';
+import { Alert, Clipboard, TouchableOpacity, Image, TextInput, StyleSheet, View, ViewStyle } from 'react-native';
 import { Images, Metrics, Colors } from '../themes';
 
 
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 
 interface Props {
   text: string;
-  style?: any;
+  style?: ViewStyle;
 }
 
 class InputCopyBox extends React.Component<Props> {

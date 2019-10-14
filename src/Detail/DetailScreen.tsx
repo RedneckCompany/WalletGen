@@ -21,40 +21,42 @@ const styles = StyleSheet.create({
     ...Fonts.sectionTitle(),
     margin: Metrics.bigMargin,
   },
+  copyBox: {
+    margin: Metrics.smallMargin,
+  }
 });
 
 interface DetailScreenProps {
   readonly navigation;
 }
 
-class DetailScreen extends React.Component<DetailScreenProps> {
-  render() {
-    const { navigation } = this.props;
-    const { publicKey, privateKey } = navigation.state.params;
+function DetailScreen({ navigation }: DetailScreenProps) {
+  const { publicKey, privateKey } = navigation.state.params;
 
-    return (
-      <View style={styles.container}>
-        <Text style={styles.sectionTitle} numberOfLines={1}>
-          Receive payment
-        </Text>
+  return (
+    <View style={styles.container}>
+      <Text style={styles.sectionTitle} numberOfLines={1}>
+        Receive payment
+      </Text>
 
-        <View style={styles.section}>
-          {publicKey && <InputCopyBox text={publicKey} />}
-          <PublicQRCode address={publicKey} />
-        </View>
-
-        <Text style={styles.sectionTitle} numberOfLines={1}>
-          Send payment
-        </Text>
-
-        <View style={styles.section}>
-          {privateKey && <InputCopyBox text={privateKey} />}
-        </View>
+      <View style={styles.section}>
+        {publicKey && 
+          <InputCopyBox style={styles.copyBox} text={publicKey} />
+        }
+        <PublicQRCode address={publicKey} />
       </View>
 
-      
-    );
-  }
+      <Text style={styles.sectionTitle} numberOfLines={1}>
+        Send payment
+      </Text>
+
+      <View style={styles.section}>
+        {privateKey && 
+          <InputCopyBox style={styles.copyBox} text={privateKey} />
+        }
+      </View>
+    </View>
+  );
 }
 
 export default DetailScreen;

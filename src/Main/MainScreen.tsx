@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import WideFabButton from '../shared/components/WideFabButton';
 import WalletList from './components/WalletList';
 import { bindActionCreators } from 'redux';
-import { checkWalletListIntegrity, fetchBalanceWallet } from '../shared/actions/walletActions';
+import { checkWalletListIntegrity } from '../shared/actions/walletActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -56,7 +56,7 @@ function MainScreen({
       {!list || !list.length && 
         <Text style={styles.sectionText}>
           You have no wallets. 
-          First press add wallet to start.
+          First press add wallet to start creating or import existing wallet.
         </Text>
       }
 
@@ -72,7 +72,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch)  => {
   return {
-    actions: bindActionCreators({ checkWalletListIntegrity, fetchBalanceWallet }, dispatch),
+    actions: bindActionCreators({ checkWalletListIntegrity }, dispatch),
   };
 }
 
