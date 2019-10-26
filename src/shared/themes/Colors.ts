@@ -9,7 +9,8 @@ const colors = {
   transparent: 'rgba(255, 255, 255, 0)',
   
   main: '#21357a',
-  mainLighter: '#0066cc',
+  // mainLighter: '#0066cc',
+  mainLightest: '#d6e0ff',
   
   accent: '#502d69',
   royalBlue: '#3A6CC9',
