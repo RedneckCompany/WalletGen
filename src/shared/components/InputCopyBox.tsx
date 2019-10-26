@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Clipboard, TouchableOpacity, Image, TextInput, StyleSheet, View, ViewStyle } from 'react-native';
+import { Alert, Clipboard, Platform, TouchableOpacity, Image, TextInput, StyleSheet, View, ViewStyle } from 'react-native';
 import { Images, Metrics, Colors } from '../themes';
 
 
@@ -10,7 +10,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
 
-    padding: Metrics.tightMargin,
+    padding: Platform.select({
+      ios:  Metrics.tightMargin,
+      android: 0,
+    }),
 
     backgroundColor: Colors.hexToRGBA(Colors.mainLighter, 0.1),
     borderColor: Colors.mainLighter,
