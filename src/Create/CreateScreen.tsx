@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     padding: Metrics.smallMargin,
     backgroundColor: Colors.primary,
     height:45,
-    elevation: Metrics.elevation.medium,
-    shadowColor: Colors.darkPrimary,
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    shadowOffset: { width: 0, height: 2 },
+
+    borderColor: Colors.main,
+    borderRadius: Metrics.radius.medium,
+    borderWidth: Metrics.border.xsmall,
+    marginHorizontal: Metrics.smallerMargin,
   }
 });
 
@@ -120,9 +120,9 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
                 style={styles.input}
                 onChangeText={(text) => this.updateName(text)}
                 placeholder={'Enter name for your wallet'}
-                // placeholderTextColor={Colors.main}
-                // selectionColor={Colors.main}
-                // underlineColorAndroid="transparent"
+                placeholderTextColor={Colors.hexToRGBA(Colors.main, 0.5)}
+                selectionColor={Colors.hexToRGBA(Colors.main, 0.3)}
+                underlineColorAndroid="transparent"
               />
             </View>
           }
@@ -137,9 +137,9 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
                 style={styles.input}
                 onChangeText={(text) => this.updateSecret(text)}
                 placeholder={'(Facultative) Enter your private key'}
-                // placeholderTextColor={Colors.main}
-                // selectionColor={Colors.main}
-                // underlineColorAndroid="transparent"
+                placeholderTextColor={Colors.hexToRGBA(Colors.main, 0.5)}
+                selectionColor={Colors.hexToRGBA(Colors.main, 0.3)}
+                underlineColorAndroid="transparent"
               />
             </View>
           }

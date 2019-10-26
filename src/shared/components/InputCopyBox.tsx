@@ -15,13 +15,14 @@ const styles = StyleSheet.create({
       android: 0,
     }),
 
-    backgroundColor: Colors.hexToRGBA(Colors.mainLighter, 0.1),
-    borderColor: Colors.mainLighter,
-    borderRadius: Metrics.radius.small,
-    borderWidth: Metrics.border.xxsmall,
+    backgroundColor: Colors.mainLightest,
+    borderColor: Colors.main,
+    borderRadius: Metrics.radius.medium,
+    borderWidth: Metrics.border.xsmall,
+    marginHorizontal: Metrics.smallerMargin,
   },
   input: {
-    color: Colors.disabledText,
+    color: Colors.main,
     flex: 1,
   },
 });
