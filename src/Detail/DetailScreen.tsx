@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import { Fonts, Metrics } from '../shared/themes';
 import InputCopyBox from '../shared/components/InputCopyBox';
 import PublicQRCode from '../tools/PublicQRCode';
+import BalanceBox from './components/BalanceBox';
+import { fetchBalance } from '../shared/actions/walletActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,36 +32,58 @@ const styles = StyleSheet.create({
 });
 
 interface DetailScreenProps {
+  readonly actions;
   readonly navigation;
+  readonly wallets;
 }
 
-function DetailScreen({ navigation }: DetailScreenProps) {
+function DetailScreen({ actions, navigation, wallets }: DetailScreenProps) {
   const { publicKey, privateKey } = navigation.state.params;
+  const { balance } = wallets;
+
+  useEffect(() => {
+    const { fetchBalance } = actions;
+    fetchBalance(publicKey);
+  }, []);
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.sectionTitle} numberOfLines={1}>
-        Receive payment
-      </Text>
+    <>
+      <BalanceBox balance={balance} publicKey={publicKey}></BalanceBox>
+      <ScrollView style={styles.container}>
+        <Text style={styles.sectionTitle} numberOfLines={1}>
+          Receive payment
+        </Text>
 
-      <View style={styles.section}>
-        {publicKey && 
-          <InputCopyBox style={styles.copyBox} text={publicKey} />
-        }
-        <PublicQRCode address={publicKey} />
-      </View>
+        <View style={styles.section}>
+          {publicKey && 
+            <InputCopyBox style={styles.copyBox} text={publicKey} />
+          }
+          <PublicQRCode address={publicKey} />
+        </View>
 
-      <Text style={styles.sectionTitle} numberOfLines={1}>
-        Send payment
-      </Text>
+        <Text style={styles.sectionTitle} numberOfLines={1}>
+          Send payment
+        </Text>
 
-      <View style={styles.section}>
-        {privateKey && 
-          <InputCopyBox style={styles.copyBox} text={privateKey} />
-        }
-      </View>
-    </ScrollView>
+        <View style={styles.section}>
+          {privateKey && 
+            <InputCopyBox style={styles.copyBox} text={privateKey} />
+          }
+        </View>
+      </ScrollView>
+    </>
   );
 }
 
-export default DetailScreen;
+const mapStateToProps = (state) => {
+  const { wallets } = state;
+  return { wallets };
+};
+
+const mapDispatchToProps = (dispatch)  => {
+  return {
+    actions: bindActionCreators({ fetchBalance }, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailScreen);

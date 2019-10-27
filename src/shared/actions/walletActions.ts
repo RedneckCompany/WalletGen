@@ -5,6 +5,7 @@ export const ADD_ITEM_LIST = 'wallet/ADD_ITEM_LIST';
 export const UPDATE_ITEM_LIST = 'wallet/UPDATE_ITEM_LIST';
 export const REMOVE_ITEM_LIST = 'wallet/REMOVE_ITEM_LIST';
 export const CHECK_LIST = 'wallet/CHECK_LIST';
+export const SET_BALANCE = 'wallet/SET_BALANCE';
 
 export function setWalletList(list) {
   return async (dispatch) => {
@@ -25,13 +26,13 @@ export function addWallet(item) {
 }
 
 
-export function fetchBalanceWallet(item) {
+export function fetchBalance(publicKey) {
   return async (dispatch) => {
-    const balance = await new Bitcoin().getInfo(item.address.publicKey);
+    const balance = await new Bitcoin().getBalance(publicKey);
 
     dispatch({
-      type: UPDATE_ITEM_LIST,
-      item: {...item, ...balance },
+      type: SET_BALANCE,
+      balance,
     });
   };
 }

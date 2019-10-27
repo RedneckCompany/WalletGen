@@ -4,10 +4,11 @@ import {
   UPDATE_ITEM_LIST,
   REMOVE_ITEM_LIST,
   CHECK_LIST,
+  SET_BALANCE,
 } from '../actions/walletActions';
 
 const INITIAL_STATE = {
-  selectedId: undefined,
+  balance: null,
   list: [],
 };
 
@@ -16,6 +17,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case SET_LIST : {
       return { ...state, list: [...action.list]}
     }
+
     case ADD_ITEM_LIST : {
       return { ...state, list: [...state.list, action.item] }
     }
@@ -35,6 +37,9 @@ export default function reducer(state = INITIAL_STATE, action) {
       return { ...state, list: checkedList }
     }
 
+    case SET_BALANCE : {
+      return { ...state, balance: { ...action.balance }};
+    }
     default:
       return state;
   }

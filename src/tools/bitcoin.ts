@@ -32,14 +32,19 @@ export default class BitcoinGenerate {
     return uri;
   }
 
-  async getInfo (address) {
+  public satoshiToBtc(value) {
+    return value * 0.00000001;
+  }
+
+  async getBalance(address) {
     const uri = `https://blockchain.info/rawaddr/${address}`;
     const response = await fetch(uri);
     const responseJson = await response.json();
 
     return {
-      balance: responseJson.final_balance,
+      value: this.satoshiToBtc(responseJson.final_balance),
       unit: 'BTC',
+      transactions: responseJson.txs,
     }
   }
 }
