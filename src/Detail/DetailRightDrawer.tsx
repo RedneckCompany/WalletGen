@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import DrawerItem from '../shared/components/DrawerItem';
 import ConfirmModal from '../shared/components/ConfirmModal';
 import { removeWallet } from '../shared/actions/walletActions';
+import ReceiveModal from './components/ReceiveModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,9 +20,13 @@ interface DetailRightDrawerProps {
 }
 
 function DetailRightDrawer({ actions, navigation }: DetailRightDrawerProps) {
+  const [showReceiveModal, setShowReceiveModal] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
 
-  const cancelDelete = () => {
+  const { publicKey } = navigation.state.params;
+
+  const closeAll = () => {
+    setShowReceiveModal(false)
     setModalDelete(false);
     navigation.closeDrawer();
   }
@@ -36,10 +41,17 @@ function DetailRightDrawer({ actions, navigation }: DetailRightDrawerProps) {
 
   return (
     <View style={styles.container}>
-      {/* <DrawerItem 
-        onPress={navigation.closeDrawer}
-        text={'Rename'}
-      /> */}
+      <DrawerItem 
+        onPress={() => setShowReceiveModal(true)}
+        text={'Receive payment'}
+      />
+      {showReceiveModal && 
+        <ReceiveModal
+          visible={showReceiveModal}
+          onClose={closeAll}
+          publicKey={publicKey}
+        />
+      }
 
       <DrawerItem 
         onPress={() => setModalDelete(true)}
@@ -47,7 +59,7 @@ function DetailRightDrawer({ actions, navigation }: DetailRightDrawerProps) {
       />
       <ConfirmModal
         visible={modalDelete}
-        onCancel={cancelDelete}
+        onCancel={closeAll}
         onConfirm={confirmDelete}
         title={'Delete wallet ?'}
         description={'Are you sure you want to delete this wallet ?'}

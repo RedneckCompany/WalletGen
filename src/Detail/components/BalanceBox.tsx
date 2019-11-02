@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 import { Colors, Fonts, Metrics } from '../../shared/themes';
 import PublicQRCode from '../../tools/PublicQRCode';
+import ReceiveModal from './ReceiveModal';
 
 
 const styles = StyleSheet.create({
@@ -35,15 +36,26 @@ interface BalanceBoxProps {
 }
 
 function BalanceBox({ balance, publicKey }: BalanceBoxProps) {
+  const [showReceiveModal, setShowReceiveModal] = useState(false);
+
   return (
     <View style={styles.container}>
         <View style={styles.content}>
           {balance && <Text style={styles.text}>{balance.value} {balance.unit}</Text>}
         </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setShowReceiveModal(true)}>
         {publicKey && <PublicQRCode address={publicKey} size={Metrics.images.medium} />}
       </TouchableOpacity>
+
+
+      {showReceiveModal && 
+        <ReceiveModal
+          visible={showReceiveModal}
+          onClose={() => setShowReceiveModal(false)}
+          publicKey={publicKey}
+        />
+      }
     </View> 
   );
 }
