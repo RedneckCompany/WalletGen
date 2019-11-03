@@ -34,7 +34,7 @@ function DrawerItem({ onPress = () => { }, text, style }: MoreButtonProps) {
     <>
       <TouchableOpacity
         style={[styles.container, style]}
-        hitSlop={Metrics.touchable.largeHitSlop}
+        hitSlop={Metrics.touchable.noHitSlop}
         onPress={onPress}
       >
         <Text style={styles.text}>{text}</Text>

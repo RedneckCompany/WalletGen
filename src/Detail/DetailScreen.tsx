@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 
 import { Fonts, Metrics } from '../shared/themes';
 import InputCopyBox from '../shared/components/InputCopyBox';
-import PublicQRCode from '../tools/PublicQRCode';
 import BalanceBox from './components/BalanceBox';
 import { fetchBalance } from '../shared/actions/walletActions';
+import Transactions from './components/Transactions';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,7 +38,7 @@ interface DetailScreenProps {
 }
 
 function DetailScreen({ actions, navigation, wallets }: DetailScreenProps) {
-  const { publicKey, privateKey } = navigation.state.params;
+  const { privateKey, publicKey } = navigation.state.params;
   const { balance } = wallets;
 
   useEffect(() => {
@@ -49,28 +49,22 @@ function DetailScreen({ actions, navigation, wallets }: DetailScreenProps) {
   return (
     <>
       <BalanceBox balance={balance} publicKey={publicKey}></BalanceBox>
-      <ScrollView style={styles.container}>
-        <Text style={styles.sectionTitle} numberOfLines={1}>
-          Receive payment
-        </Text>
+      <Text style={styles.sectionTitle} numberOfLines={1}>
+        Transaction history
+      </Text>
 
-        <View style={styles.section}>
-          {publicKey && 
-            <InputCopyBox style={styles.copyBox} text={publicKey} />
-          }
-          <PublicQRCode address={publicKey} />
-        </View>
+      {balance && balance.transactions &&
+        <Transactions transactions={balance.transactions} />
+      }
+      <Text style={styles.sectionTitle} numberOfLines={1}>
+        Send payment
+      </Text>
 
-        <Text style={styles.sectionTitle} numberOfLines={1}>
-          Send payment
-        </Text>
-
-        <View style={styles.section}>
-          {privateKey && 
-            <InputCopyBox style={styles.copyBox} text={privateKey} />
-          }
-        </View>
-      </ScrollView>
+      <View style={styles.section}>
+        {privateKey && 
+          <InputCopyBox style={styles.copyBox} text={privateKey} />
+        }
+      </View>
     </>
   );
 }

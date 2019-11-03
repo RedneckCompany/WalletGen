@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { ScrollView, Text, View, StyleSheet } from 'react-native';
 import { Metrics } from '../../shared/themes';
 import PublicQRCode from '../../tools/PublicQRCode';
 import BottomSheet from '../../shared/components/BottomSheet';
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     marginBottom: Metrics.xlargeMargin,
   },
   copyBox: {
-    marginTop: Metrics.xlargeMargin,
+    marginVertical: Metrics.xlargeMargin,
   }
 });
 
@@ -29,18 +29,22 @@ interface ReceiveModalProps {
 
 function ModalContent({ publicKey }: { publicKey: string }): JSX.Element {
   return (
-    <View style={styles.section}>
-      <Text style={styles.text}>
-        Scan the QR Code or send public key to receive payment
-      </Text>
+    <ScrollView>
+      <View style={styles.section}>
+        <Text style={styles.text}>
+          Scan the QR Code or send public key to receive payment
+        </Text>
 
-      <PublicQRCode address={publicKey} />
+          {publicKey &&
+            <PublicQRCode address={publicKey} />
+          }
 
-      {publicKey && 
-        <InputCopyBox style={styles.copyBox} text={publicKey} />
-      }
-    </View>
-  )
+          {publicKey &&
+            <InputCopyBox style={styles.copyBox} text={publicKey} />
+          }
+      </View>
+    </ScrollView>
+  );
 }
 
 function ReceiveModal({ publicKey, visible, onClose }: ReceiveModalProps) {

@@ -40,9 +40,9 @@ function BalanceBox({ balance, publicKey }: BalanceBoxProps) {
 
   return (
     <View style={styles.container}>
-        <View style={styles.content}>
-          {balance && <Text style={styles.text}>{balance.value} {balance.unit}</Text>}
-        </View>
+      <View style={styles.content}>
+        {balance && <Text style={styles.text}>{balance.value} {balance.unit}</Text>}
+      </View>
 
       <TouchableOpacity onPress={() => setShowReceiveModal(true)}>
         {publicKey && <PublicQRCode address={publicKey} size={Metrics.images.medium} />}
