@@ -35,10 +35,22 @@ function Transaction({ value, unit }: TransactionProps): JSX.Element {
 
 function Transactions({ transactions }: TransactionsProps): JSX.Element {
   return (
-    <FlatList
-      data={transactions}
-      renderItem={Transaction}
-    />
+    <>
+      {!!transactions.length &&
+        <FlatList
+          data={transactions}
+          renderItem={Transaction}
+        />
+      }
+
+      {!transactions.length &&
+        <View style={styles.section}>
+          <Text style={styles.text}>
+            No transaction
+          </Text>
+        </View>
+      }
+    </>
   );
 }
 

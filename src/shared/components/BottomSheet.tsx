@@ -17,6 +17,7 @@ interface BottomSheetProps {
   readonly visible: boolean;
   readonly onClose: () => void;
   readonly content: JSX.Element;
+  readonly popupHeight?: number;
 };
 
 interface BottomSheetStyle {
@@ -72,18 +73,24 @@ const styles = StyleSheet.create<BottomSheetStyle>({
   },
 });
 
-export default function BottomSheet({ title, onClose, visible, content }: BottomSheetProps): JSX.Element {
+const screenHeight: number = Dimensions.get('window').height;
+
+export default function BottomSheet({
+  title,
+  onClose,
+  visible,
+  content,
+  popupHeight = screenHeight - Metrics.xxxlargeMargin,
+}: BottomSheetProps): JSX.Element {
   const [dismiss, setDismiss] = useState(false);
-  const screenHeight: number = Dimensions.get('window').height;
-  const popupHeight: number = screenHeight - Metrics.xxxlargeMargin;
   const animation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-      Animated.timing(animation, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
+    Animated.timing(animation, {
+      toValue: 1,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
     return () => {
       setDismiss(true)
     }
@@ -105,7 +112,7 @@ export default function BottomSheet({ title, onClose, visible, content }: Bottom
   return (
     <Modal
       onRequestClose={handleOnClose}
-      transparent={false}
+      transparent={true}
       visible={visible}
       animationType={'fade'}
       hardwareAccelerated

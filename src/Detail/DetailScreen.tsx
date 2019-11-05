@@ -17,11 +17,6 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
-  section: {
-    flexDirection: 'column',
-    width: '100%',
-    alignItems: 'center',
-  },
   sectionTitle: {
     ...Fonts.sectionTitle(),
     margin: Metrics.bigMargin,
@@ -56,15 +51,6 @@ function DetailScreen({ actions, navigation, wallets }: DetailScreenProps) {
       {balance && balance.transactions &&
         <Transactions transactions={balance.transactions} />
       }
-      <Text style={styles.sectionTitle} numberOfLines={1}>
-        Send payment
-      </Text>
-
-      <View style={styles.section}>
-        {privateKey && 
-          <InputCopyBox style={styles.copyBox} text={privateKey} />
-        }
-      </View>
     </>
   );
 }

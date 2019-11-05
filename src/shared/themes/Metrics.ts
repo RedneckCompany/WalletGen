@@ -32,16 +32,7 @@ const metrics = {
     android: 50,
     ios: 65,
   }),
-  tabBarIconOpacity: Platform.select({
-    android: 0.45,
-    ios: 0.7,
-  }),
-  tabBarHeight: 56,
-  popUpMenuWidth: 250,
-  button: 44,
-  smallHitSlop: 2,
-  hitSlop: 10,
-  largeHitSlop: 25,
+  popupHeight: 300,
   listItem: {
     tiny: 34,
     small: 44,

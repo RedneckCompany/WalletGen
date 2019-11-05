@@ -7,6 +7,7 @@ import DrawerItem from '../shared/components/DrawerItem';
 import ConfirmModal from '../shared/components/ConfirmModal';
 import { removeWallet } from '../shared/actions/walletActions';
 import ReceiveModal from './components/ReceiveModal';
+import ExportModal from './components/ExportModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,12 +22,14 @@ interface DetailRightDrawerProps {
 
 function DetailRightDrawer({ actions, navigation }: DetailRightDrawerProps) {
   const [showReceiveModal, setShowReceiveModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
 
-  const { publicKey } = navigation.state.params;
+  const { publicKey, privateKey } = navigation.state.params;
 
   const closeAll = () => {
-    setShowReceiveModal(false)
+    setShowReceiveModal(false);
+    setShowExportModal(false);
     setModalDelete(false);
     navigation.closeDrawer();
   }
@@ -50,6 +53,18 @@ function DetailRightDrawer({ actions, navigation }: DetailRightDrawerProps) {
           visible={showReceiveModal}
           onClose={closeAll}
           publicKey={publicKey}
+        />
+      }
+
+      <DrawerItem 
+        onPress={() => setShowExportModal(true)}
+        text={'Export wallet'}
+      />
+      {showExportModal && 
+        <ExportModal
+          visible={showExportModal}
+          onClose={closeAll}
+          privateKey={privateKey}
         />
       }
 
