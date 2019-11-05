@@ -24,6 +24,10 @@ The JKS keystore uses a proprietary format. It is recommended to migrate to PKCS
 
 ## Troubleshooting
 
+### general
+
+1. for error : error: cannot find symbol variable TransitionManager. Run `npx jetify`in root project folder
+
 ### bitcoinjs-lib
 
 `npm install bitcoinjs-lib@5.1.1 react-native-randombytes buffer`

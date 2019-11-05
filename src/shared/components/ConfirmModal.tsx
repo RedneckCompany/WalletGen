@@ -64,7 +64,7 @@ function ConfirmModal({ visible, onCancel, onConfirm, title, description }: Conf
   return (
     <Modal
       animationType="slide"
-      transparent={false}
+      transparent={true}
       visible={visible}
     >
       <View style={styles.container}>

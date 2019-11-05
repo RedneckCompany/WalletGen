@@ -1,7 +1,6 @@
 import React from 'react';
 import { ScrollView, Text, View, StyleSheet } from 'react-native';
 import { Metrics } from '../../shared/themes';
-import PublicQRCode from '../../tools/PublicQRCode';
 import BottomSheet from '../../shared/components/BottomSheet';
 import InputCopyBox from '../../shared/components/InputCopyBox';
 
@@ -22,40 +21,37 @@ const styles = StyleSheet.create({
 });
 
 interface ReceiveModalProps {
-  readonly publicKey: string;
+  readonly privateKey: string;
   readonly visible: boolean;
   readonly onClose: () => void;
 }
 
-function ModalContent({ publicKey }: { publicKey: string }): JSX.Element {
+function ModalContent({ privateKey }: { privateKey: string }): JSX.Element {
   return (
     <ScrollView>
       <View style={styles.section}>
         <Text style={styles.text}>
-          Scan the QR Code or send public key to receive payment.
+          Copy the private key down below to export the wallet.
         </Text>
 
-          {publicKey &&
-            <PublicQRCode address={publicKey} />
-          }
-
-          {publicKey &&
-            <InputCopyBox style={styles.copyBox} text={publicKey} />
+          {privateKey &&
+            <InputCopyBox style={styles.copyBox} text={privateKey} />
           }
       </View>
     </ScrollView>
   );
 }
 
-function ReceiveModal({ publicKey, visible, onClose }: ReceiveModalProps) {
+function ExportModal({ privateKey, visible, onClose }: ReceiveModalProps) {
   return (
     <BottomSheet
       visible={visible}
-      title={'Receive payment'}
+      title={'Export wallet'}
       onClose={onClose}
-      content={ModalContent({ publicKey })}
+      content={ModalContent({ privateKey })}
+      popupHeight={Metrics.popupHeight}
     />
   );
 }
 
-export default ReceiveModal;
+export default ExportModal;
