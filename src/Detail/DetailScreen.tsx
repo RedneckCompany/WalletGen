@@ -3,11 +3,11 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { Fonts, Metrics } from '../shared/themes';
-import InputCopyBox from '../shared/components/InputCopyBox';
+import { Fonts, Metrics, Images } from '../shared/themes';
 import BalanceBox from './components/BalanceBox';
 import { fetchBalance } from '../shared/actions/walletActions';
 import Transactions from './components/Transactions';
+import FabButton from '../shared/components/FabButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,7 +33,7 @@ interface DetailScreenProps {
 }
 
 function DetailScreen({ actions, navigation, wallets }: DetailScreenProps) {
-  const { privateKey, publicKey } = navigation.state.params;
+  const { publicKey } = navigation.state.params;
   const { balance } = wallets;
 
   useEffect(() => {
@@ -51,6 +51,7 @@ function DetailScreen({ actions, navigation, wallets }: DetailScreenProps) {
       {balance && balance.transactions &&
         <Transactions transactions={balance.transactions} />
       }
+      <FabButton icon={Images.planeIcon} onPress={() => navigation.navigate('Create')} />
     </>
   );
 }

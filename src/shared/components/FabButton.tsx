@@ -1,15 +1,15 @@
 import React from 'react';
-import { Platform, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
+import { Platform, Image, StyleSheet, TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
 import { getInset as getSafeAreaInset } from 'react-native-safe-area-view';
 import { Colors, Metrics } from '../themes';
 
-interface WideFabButtonProps {
-  readonly text: string;
+interface FabButtonProps {
+  readonly icon: string;
   readonly disabled?: boolean;
   readonly onPress: () => void;
 }
 
-interface WideFabButtonStyles {
+interface FabButtonStyles {
   readonly container: ViewStyle;
   readonly active: ViewStyle;
   readonly disabled: ViewStyle;
@@ -21,20 +21,19 @@ const initialHeightByPlatform =  Platform.select({
   ios: Metrics.littleMargin + getSafeAreaInset('bottom'),
 });
 
-const styles = StyleSheet.create<WideFabButtonStyles>({
+const styles = StyleSheet.create<FabButtonStyles>({
   container: {
     position: 'absolute',
-    left: Metrics.xxlargeMargin,
-    right: Metrics.xxlargeMargin,
+    right: Metrics.xlargeMargin,
     bottom: initialHeightByPlatform,
-    paddingVertical: Metrics.littleMargin,
+    padding: Metrics.littleMargin,
     elevation: Metrics.elevation.medium,
     zIndex: Metrics.elevation.medium,
     shadowColor: Colors.darkPrimary,
     shadowOpacity: 0.3,
     shadowRadius: 2,
     shadowOffset: { width: 0, height: 2 },
-    borderRadius: Metrics.largeMargin,
+    borderRadius: Metrics.radius.circle,
   },
   active: {
     backgroundColor: Colors.main,
@@ -48,14 +47,14 @@ const styles = StyleSheet.create<WideFabButtonStyles>({
   }
 });
 
-export default function WideFabButton({ text, disabled = false, onPress }: WideFabButtonProps): JSX.Element {
+export default function FabButton({ icon, disabled = false, onPress }: FabButtonProps): JSX.Element {
   return (
       <TouchableOpacity
         disabled={disabled}
         onPress={onPress}
         style={[styles.container, disabled ? styles.disabled : styles.active]}
       >
-        <Text style={styles.text}>{text}</Text>
+        <Image source={icon} />
       </TouchableOpacity>
   );
 }
