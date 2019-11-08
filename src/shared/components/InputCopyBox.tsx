@@ -58,11 +58,11 @@ class InputCopyBox extends React.Component<Props> {
             // underlineColorAndroid="transparent"
           />
 
-        <TouchableOpacity onPress={this.readFromClipboard}>
-          <Image
-            style={styles.icon}
-            source={Images.copyIcon}
-          />
+        <TouchableOpacity
+          hitSlop={Metrics.touchable.largeHitSlop}
+          onPress={this.readFromClipboard}  
+        >
+          <Image source={Images.copyIcon} />
         </TouchableOpacity>
       </View>
     );
