@@ -49,14 +49,4 @@ export default class BitcoinGenerate {
       transactions,
     }
   }
-
-  // Convert valueto selected currency
-  // @param value in mBTC
-  // @param currency USD, JPY, CNY, SGD, HKD, CAD, NZD, AUD, CLP, GBP, DKK,SEK, ISK, CHF, BRL, EUR, RUB, PLN, THB, KRW, TWD
-  async convertBTC(value: number, currency: string = 'USD') {
-    const uri = `https://blockchain.info/tobtc?currency=${currency}&value=${value}`;
-    const response = await fetch(uri);
-console.log(response);
-    return response;
-  }
 }

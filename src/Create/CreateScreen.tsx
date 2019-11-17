@@ -90,7 +90,7 @@ class CreateScreen extends React.Component<CreateScreenProps, CreateScreenState>
       await addWallet({ id, type, name, address });
       navigation.goBack(null);
     } catch (e) { 
-      console.log('err', e);
+      console.warn('err', e);
     }
   }
 

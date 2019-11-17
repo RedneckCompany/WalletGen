@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Colors, Fonts, Metrics } from '../shared/themes';
-import Bitcoin from '../tools/bitcoin';
+import { getAll } from '../tools/currencies';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...Fonts.header(),
+    marginBottom: Metrics.bigMargin,
   },
   text: {
     ...Fonts.text(),
@@ -21,21 +22,24 @@ const styles = StyleSheet.create({
 });
 
 export default function MainDrawer() {
-  const [USD, setUSD] = useState(0);
+  const [currencies, setCurrencies] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await new Bitcoin().convertBTC(100000000);
-      //setUSD(result);
-    };
-    fetchData();
-  }, []);
+    async function getCurrencies() {
+      setCurrencies(await getAll());
+    }
+    getCurrencies();
+  }, [currencies]);
   
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{'WalletGen'}</Text>
 
       <View>
-        <Text style={styles.text}>1 BTC = {USD} USD</Text>
+        {!!currencies.length && currencies.map((currency) => (
+          <Text key={currency.id} style={styles.text}>
+            {currency.symbol} = {currency.price_usd} USD
+          </Text>
+        ))}
       </View>
     </View>
   );
